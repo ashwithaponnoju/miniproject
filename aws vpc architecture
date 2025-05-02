@@ -1,0 +1,154 @@
+#!/bin/bash
+sudo su
+yum update -y
+yum install httpd -y
+
+# Start and enable httpd
+systemctl start httpd
+systemctl enable httpd
+
+# Move to web root
+cd /var/www/html
+
+# Create toy store website HTML file
+cat <<EOF > index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tiny Tots Toy Store</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0faff;
+      color: #333;
+    }
+    header {
+      background-color: #3498db;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+    nav {
+      background-color: #5dade2;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 20px;
+    }
+    h2 {
+      color: #3498db;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .product-item {
+      background: #fff;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      transition: transform 0.2s;
+    }
+    .product-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    footer {
+      background-color: #3498db;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #28b463;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #239b56;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Welcome to Tiny Tots Toy Store</h1>
+  <p>Fun for Every Child</p>
+</header>
+
+<nav>
+  <a href="#products">Toys</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a>
+</nav>
+
+<section id="products">
+  <h2>Our Toys</h2>
+  <div class="products">
+    <div class="product-item">
+      <h3>Teddy Bear</h3>
+      <p>Soft and cuddly plush bear.</p>
+      <p><strong>₹499</strong></p>
+    </div>
+    <div class="product-item">
+      <h3>Lego Building Set</h3>
+      <p>Create your own colorful world.</p>
+      <p><strong>₹1299</strong></p>
+    </div>
+    <div class="product-item">
+      <h3>Remote Control Car</h3>
+      <p>Zoom into fun with this fast car.</p>
+      <p><strong>₹899</strong></p>
+    </div>
+    <div class="product-item">
+      <h3>Barbie Doll</h3>
+      <p>Classic Barbie with fashionable outfits.</p>
+      <p><strong>₹799</strong></p>
+    </div>
+    <div class="product-item">
+      <h3>Puzzle Set</h3>
+      <p>Enhance your child's problem-solving skills.</p>
+      <p><strong>₹349</strong></p>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <h2>About Us</h2>
+  <p>At Tiny Tots Toy Store, we bring joy to every child's heart with high-quality, safe, and imaginative toys. Whether you're looking for educational puzzles, action-packed toys, or cuddly companions — we have it all!</p>
+</section>
+
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p><strong>Address:</strong> 45 Rainbow Lane, Bengaluru, India</p>
+  <p><strong>Phone:</strong> +91 91234 56789</p>
+  <button onclick="alert('Thanks for reaching out!')">Send Inquiry</button>
+</section>
+
+<footer>
+  &copy; 2025 Tiny Tots Toy Store | Play. Learn. Grow.
+</footer>
+
+<script>
+  console.log("Welcome to Tiny Tots Toy Store!");
+</script>
+
+</body>
+</html>
+EOF
